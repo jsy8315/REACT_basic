@@ -7,7 +7,7 @@ function App() {
 
   // 서버에서 가져왔다고 가정
   let post = "광명 우동 맛집";
-  let [글제목, b] = useState(['남자 코트 추천', "광명 우동 맛집", "파이도터 독학"])
+  let [글제목, b] = useState(['남자 코트 추천', "철산 우동 맛집", "파이도터 독학"])
   let [logo, setLogo] = useState('ReactBlog');
   let [좋아요, 좋아요변경] = useState(0);
 
@@ -24,7 +24,9 @@ function App() {
         <p>2월 17일 발행</p>
       </div>
       <div className='list'>
-        <h4>{글제목[1]}</h4>
+        <h4>
+          {글제목[1]} <span onClick={()=>b(['남자 코트 추천', "하안 우동 맛집", "파이도터 독학"])}>🍔</span>
+        </h4>
         <p>2월 18일 발행</p>
       </div>
       <div className='list'>
