@@ -26,9 +26,11 @@ function App() {
       <div className='list'>
         <h4>
           {글제목[1]} <span onClick={()=>{
-            let copy = [...글제목];
+            let copy = 글제목;
+            //let copy = [...글제목];
             copy[1] = "하안 우동 맛집";
             글제목변경(copy);
+            console.log(글제목 == copy);
             }}>🍔</span>
         </h4>
         <p>2월 18일 발행</p>
