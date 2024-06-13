@@ -7,7 +7,7 @@ function App() {
 
   // 서버에서 가져왔다고 가정
   let post = "광명 우동 맛집";
-  let [글제목, 글제목변경] = useState(['남자 코트 추천', "철산 우동 맛집", "파이도터 독학"])
+  let [글제목, 글제목변경] = useState(['남자 코트 추천', "가산 우동 맛집", "다이도터 독학"])
   let [logo, setLogo] = useState('ReactBlog');
   let [좋아요, 좋아요변경] = useState(0);
 
@@ -26,9 +26,9 @@ function App() {
       <div className='list'>
         <h4>
           {글제목[1]} <span onClick={()=>{
-            let copy = 글제목;
-            //let copy = [...글제목];
-            copy[1] = "하안 우동 맛집";
+            //let copy = 글제목;
+            let copy = [...글제목]; //-> 괄호 벗겨주고 다시 씌워주세요 : 화살표가 달라짐
+            copy[1] = "철산 우동 맛집";
             글제목변경(copy);
             console.log(글제목 == copy);
             }}>🍔</span>
@@ -39,6 +39,14 @@ function App() {
         <h4>{글제목[2]}</h4>
         <p>2월 19일 발행</p>
       </div>
+      <button onClick={()=>{
+        let copy02 = [...글제목];
+        console.log(copy02);
+        copy02.sort();
+        console.log(copy02);
+        글제목변경(copy02);
+      }}>
+        글제목 가나다순 정렬</button>
     </div>
   );
 }
