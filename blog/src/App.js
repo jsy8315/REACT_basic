@@ -28,7 +28,7 @@ function App() {
           {글제목[1]} <span onClick={()=>{
             //let copy = 글제목;
             let copy = [...글제목]; //-> 괄호 벗겨주고 다시 씌워주세요 : 화살표가 달라짐
-            copy[1] = "철산 우동 맛집";
+            copy[1] = " 우동 맛집";
             글제목변경(copy);
             console.log(글제목 == copy);
             }}>🍔</span>
@@ -47,8 +47,19 @@ function App() {
         글제목변경(copy02);
       }}>
         글제목 가나다순 정렬</button>
+      <Modal/>
     </div>
   );
+}
+
+function Modal() {
+  return (
+    <div className='modal'>
+    <h4>제목</h4>
+    <p>날짜</p>
+    <p>상세내용</p>
+  </div>
+  )
 }
 
 export default App;
