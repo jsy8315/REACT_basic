@@ -48,6 +48,7 @@ function App() {
       }}>
         글제목 가나다순 정렬</button>
       <Modal/>
+      <Modal02/>
     </div>
   );
 }
@@ -55,6 +56,16 @@ function App() {
 function Modal() {
   return (
     <div className='modal'>
+    <h4>제목</h4>
+    <p>날짜</p>
+    <p>상세내용</p>
+  </div>
+  )
+}
+
+let Modal02 = () => {
+  return (
+    <div className='modal02'>
     <h4>제목</h4>
     <p>날짜</p>
     <p>상세내용</p>
