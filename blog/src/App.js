@@ -10,6 +10,7 @@ function App() {
   let [글제목, 글제목변경] = useState(['남자 코트 추천', "가산 우동 맛집", "다이도터 독학"])
   let [logo, setLogo] = useState('ReactBlog');
   let [좋아요, 좋아요변경] = useState(0);
+  let [modal, setModal] = useState(false);
 
   return (
     <div className="App">
@@ -47,8 +48,13 @@ function App() {
         글제목변경(copy02);
       }}>
         글제목 가나다순 정렬</button>
-      <Modal/>
+      {/* <Modal/> */}
       <Modal02/>
+
+      {
+        modal == true ? <Modal/> : null
+      }
+
     </div>
   );
 }
