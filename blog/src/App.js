@@ -10,7 +10,8 @@ function App() {
   let [글제목, 글제목변경] = useState(['남자 코트 추천', "가산 우동 맛집", "다이도터 독학"])
   let [logo, setLogo] = useState('ReactBlog');
   let [좋아요, 좋아요변경] = useState(0);
-  let [modal, setModal] = useState(false);
+  let [modalShow, setModalShow] = useState(false);
+  var [cntShowModal, setCntShowModal] = useState(0);
 
   return (
     <div className="App">
@@ -37,7 +38,12 @@ function App() {
         <p>2월 18일 발행</p>
       </div>
       <div className='list'>
-        <h4 onClick={()=>{ setModal(true)}}>{글제목[2]}</h4>
+        
+        <h4 onClick={()=>{ 
+          setCntShowModal(cntShowModal+1);
+          cntShowModal % 2 == 1 ? setModalShow(false) : setModalShow(true)
+          console.log(cntShowModal)
+          }}>{글제목[2]}</h4>
         <p>2월 19일 발행</p>
       </div>
       <button onClick={()=>{
@@ -50,7 +56,7 @@ function App() {
         글제목 가나다순 정렬</button>
 
       {
-        modal == true ? <Modal/> : null
+        modalShow == true ? <Modal/> : null
       }
       <Modal02/>
 
