@@ -37,7 +37,7 @@ function App() {
         <p>2월 18일 발행</p>
       </div>
       <div className='list'>
-        <h4>{글제목[2]}</h4>
+        <h4 onClick={()=>{ setModal(true)}}>{글제목[2]}</h4>
         <p>2월 19일 발행</p>
       </div>
       <button onClick={()=>{
@@ -48,12 +48,11 @@ function App() {
         글제목변경(copy02);
       }}>
         글제목 가나다순 정렬</button>
-      {/* <Modal/> */}
-      <Modal02/>
 
       {
         modal == true ? <Modal/> : null
       }
+      <Modal02/>
 
     </div>
   );
@@ -62,9 +61,9 @@ function App() {
 function Modal() {
   return (
     <div className='modal'>
-    <h4>제목</h4>
-    <p>날짜</p>
-    <p>상세내용</p>
+    <h4>제목이요</h4>
+    <p>날짜요</p>
+    <p>상세내용이용</p>
   </div>
   )
 }
