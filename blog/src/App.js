@@ -19,7 +19,7 @@ function App() {
         <h4 id={post} style={{color : 'yellow', fontSize : '40px'}}>{logo}</h4>
         {/* <h4>블로그임</h4> -> 실제 서비스였으면 서버 같은데서 블로그 글 가져와서 보여줄듯 */}
       </div>
-      <div className='list'>
+      {/* <div className='list'>
         <h4>
           {글제목[0]} <span onClick={()=>좋아요변경(좋아요+1)}>👍</span> { 좋아요 }
         </h4>
@@ -44,11 +44,20 @@ function App() {
           console.log(cntShowModal)
           }}>{글제목[2]}</h4>
         <p>2월 19일 발행</p>
-      </div>
+      </div> */}
 
       {
-        [1,2,3].map(function(){
-          return <div>안녕</div>
+        글제목.map(function(a, i){
+          return (
+            <div className='list'>
+            <h4 onClick={()=>{ 
+          setCntShowModal(cntShowModal+1);
+          cntShowModal % 2 == 1 ? setModalShow(false) : setModalShow(true)
+          }}>{a}</h4>
+            <h4>{글제목[i]}</h4>
+            <p>2월 19일 발행</p>
+          </div>
+          )
         })
       } 
       <button onClick={()=>{
