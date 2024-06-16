@@ -11,7 +11,7 @@ function App() {
   let [logo, setLogo] = useState('ReactBlog');
   let [좋아요, 좋아요변경] = useState(0);
   let [modalShow, setModalShow] = useState(false);
-  var [cntShowModal, setCntShowModal] = useState(0);
+  let [cntShowModal, setCntShowModal] = useState(0);
 
   return (
     <div className="App">
@@ -38,7 +38,6 @@ function App() {
         <p>2월 18일 발행</p>
       </div>
       <div className='list'>
-        
         <h4 onClick={()=>{ 
           setCntShowModal(cntShowModal+1);
           cntShowModal % 2 == 1 ? setModalShow(false) : setModalShow(true)
@@ -46,6 +45,12 @@ function App() {
           }}>{글제목[2]}</h4>
         <p>2월 19일 발행</p>
       </div>
+
+      {
+        [1,2,3].map(function(){
+          return <div>안녕</div>
+        })
+      } 
       <button onClick={()=>{
         let copy02 = [...글제목];
         console.log(copy02);
