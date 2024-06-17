@@ -78,7 +78,7 @@ function App() {
         글제목 가나다순 정렬</button>
 
       {
-        modalShow == true ? <Modal/> : null
+        modalShow == true ? <Modal color={'yellow'} 작명={글제목} 글제목변경프롭스={글제목변경}/> : null
       }
       <Modal02/>
 
@@ -86,12 +86,21 @@ function App() {
   );
 }
 
-function Modal() {
+function Modal(props) {
   return (
-    <div className='modal'>
-    <h4>제목이요</h4>
+    <div className='modal' style={{background : props.color}}>
+    <h4>{props.작명[0]}</h4>
     <p>날짜요</p>
     <p>상세내용이용</p>
+    <button 
+      onClick={()=>{
+        let copyTitle = [...props.작명]
+        copyTitle[0] = '여자코트 추천';
+        props.글제목변경프롭스(copyTitle);
+
+        } }>
+      글수정
+    </button>
   </div>
   )
 }
