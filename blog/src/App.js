@@ -9,7 +9,7 @@ function App() {
   let post = "광명 우동 맛집";
   let [글제목, 글제목변경] = useState(['남자 코트 추천', "가산 우동 맛집", "다이도터 독학"])
   let [logo, setLogo] = useState('ReactBlog');
-  let [좋아요, 좋아요변경] = useState(0);
+  let [좋아요, 좋아요변경] = useState([0, 0, 0]);
   let [modalShow, setModalShow] = useState(false);
   let [cntShowModal, setCntShowModal] = useState(0);
 
@@ -41,7 +41,6 @@ function App() {
         <h4 onClick={()=>{ 
           setCntShowModal(cntShowModal+1);
           cntShowModal % 2 == 1 ? setModalShow(false) : setModalShow(true)
-          console.log(cntShowModal)
           }}>{글제목[2]}</h4>
         <p>2월 19일 발행</p>
       </div> */}
@@ -49,17 +48,26 @@ function App() {
       {
         글제목.map(function(a, i){
           return (
-            <div className='list'>
+            <div className='list' key={i}>
             <h4 onClick={()=>{ 
           setCntShowModal(cntShowModal+1);
           cntShowModal % 2 == 1 ? setModalShow(false) : setModalShow(true)
           }}>{a}</h4>
-            <h4>{글제목[i]}</h4>
+            <h4>
+              { 글제목[i] } 
+              <span onClick={()=>{
+                let copyLike = [...좋아요];
+                copyLike[i] += 1;
+                좋아요변경(copyLike);
+                } }>👍</span> { 좋아요[i] }
+            </h4>
             <p>2월 19일 발행</p>
           </div>
           )
         })
+        
       } 
+      
       <button onClick={()=>{
         let copy02 = [...글제목];
         console.log(copy02);
