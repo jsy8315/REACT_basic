@@ -7,11 +7,12 @@ function App() {
 
   // 서버에서 가져왔다고 가정
   let post = "광명 우동 맛집";
-  let [글제목, 글제목변경] = useState(['남자 코트 추천', "가산 우동 맛집", "다이도터 독학"])
+  let [글제목, 글제목변경] = useState(['남자 코트 추천', "가산 우동 맛집", "다이도터 독학"]);
   let [logo, setLogo] = useState('ReactBlog');
   let [좋아요, 좋아요변경] = useState([0, 0, 0]);
   let [modalShow, setModalShow] = useState(false);
-  let [cntShowModal, setCntShowModal] = useState(0);
+  let [clickedTitle, setClickedTitle] = useState('notYet');
+
 
   return (
     <div className="App">
@@ -50,8 +51,8 @@ function App() {
           return (
             <div className='list' key={i}>
             <h4 onClick={()=>{ 
-          setCntShowModal(cntShowModal+1);
-          cntShowModal % 2 == 1 ? setModalShow(false) : setModalShow(true)
+           setModalShow(true);
+           setClickedTitle(글제목[i]);
           }}>{a}</h4>
             <h4>
               { 글제목[i] } 
@@ -77,19 +78,24 @@ function App() {
       }}>
         글제목 가나다순 정렬</button>
 
+
       {
-        modalShow == true ? <Modal color={'yellow'} 작명={글제목} 글제목변경프롭스={글제목변경}/> : null
+        modalShow == true ? <Modal color={'yellow'} 작명={글제목} 글제목변경프롭스={글제목변경} 
+        현재글제목={clickedTitle}
+        /> : null
       }
-      <Modal02/>
 
     </div>
   );
-}
+};
 
 function Modal(props) {
   return (
     <div className='modal' style={{background : props.color}}>
-    <h4>{props.작명[0]}</h4>
+    <h4>{
+      //props.작명[0]
+      props.현재글제목
+    }</h4>
     <p>날짜요</p>
     <p>상세내용이용</p>
     <button 
@@ -97,7 +103,6 @@ function Modal(props) {
         let copyTitle = [...props.작명]
         copyTitle[0] = '여자코트 추천';
         props.글제목변경프롭스(copyTitle);
-
         } }>
       글수정
     </button>
