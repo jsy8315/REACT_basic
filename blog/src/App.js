@@ -77,6 +77,9 @@ function App() {
         글제목변경(copy02);
       }}>
         글제목 가나다순 정렬</button>
+      <div>
+        <input onChange={(e)=>{ console.log(e.target.value) }} />
+      </div>
 
 
       {
@@ -93,7 +96,6 @@ function Modal(props) {
   return (
     <div className='modal' style={{background : props.color}}>
     <h4>{
-      //props.작명[0]
       props.현재글제목
     }</h4>
     <p>날짜요</p>
