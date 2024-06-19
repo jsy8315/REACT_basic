@@ -53,15 +53,13 @@ function App() {
             <h4 onClick={()=>{ 
            setModalShow(true);
            setClickedTitle(글제목[i]);
-          }}>{a}</h4>
-            <h4>
-              { 글제목[i] } 
-              <span onClick={()=>{
+          }}>{a}
+          <span onClick={()=>{
                 let copyLike = [...좋아요];
                 copyLike[i] += 1;
                 좋아요변경(copyLike);
                 } }>👍</span> { 좋아요[i] }
-            </h4>
+                </h4>
             <p>2월 19일 발행</p>
           </div>
           )
