@@ -12,6 +12,7 @@ function App() {
   let [좋아요, 좋아요변경] = useState([0, 0, 0]);
   let [modalShow, setModalShow] = useState(false);
   let [clickedTitle, setClickedTitle] = useState('notYet');
+  let [입력값, 입력값변경] = useState('');
 
 
   return (
@@ -50,16 +51,14 @@ function App() {
         글제목.map(function(a, i){
           return (
             <div className='list' key={i}>
-            <h4 onClick={()=>{ 
-           setModalShow(true);
-           setClickedTitle(글제목[i]);
-          }}>{a}
-          <span onClick={()=>{
-                let copyLike = [...좋아요];
-                copyLike[i] += 1;
-                좋아요변경(copyLike);
-                } }>👍</span> { 좋아요[i] }
-                </h4>
+              <h4 onClick={()=>{ setModalShow(true); setClickedTitle(글제목[i]);}}>{a}
+                <span onClick={(e)=>{
+                  e.stopPropagation();
+                  let copyLike = [...좋아요];
+                  copyLike[i] += 1;
+                  좋아요변경(copyLike);} }>👍
+                </span> { 좋아요[i] }
+              </h4>
             <p>2월 19일 발행</p>
           </div>
           )
@@ -75,8 +74,12 @@ function App() {
         글제목변경(copy02);
       }}>
         글제목 가나다순 정렬</button>
+
       <div>
-        <input onChange={(e)=>{ console.log(e.target.value) }} />
+        <input onChange={(e)=>{
+          입력값변경(e.target.value);
+          console.log(입력값); }} 
+        />
       </div>
 
 
