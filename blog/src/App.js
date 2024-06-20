@@ -61,10 +61,9 @@ function App() {
                 <button onClick={
                   (e)=>{
                     e.stopPropagation();
-                    delete 글제목[i];
-                    글제목변경(글제목);
-                    delete 좋아요[i];
-                    좋아요변경(좋아요);
+                    let copyTitle03 = [...글제목];
+                    copyTitle03.slice(i, 1);
+                    글제목변경(copyTitle03);
                   }
                   }>
                   삭제
@@ -92,8 +91,9 @@ function App() {
         />
         <button onClick={
           ()=>{
-            글제목.push(입력값);
-            글제목변경(글제목);
+            let copyTitle02 = [...글제목];
+            copyTitle02.push(입력값);
+            글제목변경(copyTitle02);
             좋아요.push(0);
             좋아요변경(좋아요);
           }
