@@ -58,12 +58,22 @@ function App() {
                   copyLike[i] += 1;
                   좋아요변경(copyLike);} }>👍
                 </span> { 좋아요[i] }
+                <button onClick={
+                  (e)=>{
+                    e.stopPropagation();
+                    delete 글제목[i];
+                    글제목변경(글제목);
+                    delete 좋아요[i];
+                    좋아요변경(좋아요);
+                  }
+                  }>
+                  삭제
+                </button>
               </h4>
             <p>2월 19일 발행</p>
           </div>
           )
         })
-        
       } 
       
       <button onClick={()=>{
@@ -80,6 +90,16 @@ function App() {
           입력값변경(e.target.value);
           console.log(입력값); }} 
         />
+        <button onClick={
+          ()=>{
+            글제목.push(입력값);
+            글제목변경(글제목);
+            좋아요.push(0);
+            좋아요변경(좋아요);
+          }
+          }>
+            글발행
+        </button>
       </div>
 
 
@@ -113,14 +133,14 @@ function Modal(props) {
   )
 }
 
-let Modal02 = () => {
-  return (
-    <div className='modal02'>
-    <h4>제목</h4>
-    <p>날짜</p>
-    <p>상세내용</p>
-  </div>
-  )
-}
+// let Modal02 = () => {
+//   return (
+//     <div className='modal02'>
+//     <h4>제목</h4>
+//     <p>날짜</p>
+//     <p>상세내용</p>
+//   </div>
+//   )
+// }
 
 export default App;
