@@ -61,9 +61,16 @@ function App() {
                 <button onClick={
                   (e)=>{
                     e.stopPropagation();
-                    let copyTitle03 = [...글제목];
-                    copyTitle03.slice(i, 1);
-                    글제목변경(copyTitle03);
+                    let copyTitle04 = [...글제목];
+                    copyTitle04.splice(i, 1);
+                    글제목변경(copyTitle04);
+
+                    //글제목.splice(i, 1);
+                    //글제목변경(글제목);
+                    // 이 경우 글제목 배열을 직접 변경합니다. 
+                    // 그러나 React는 상태가 변경되었는지 확인하기 위해 얕은 비교(shallow comparison)를 사용합니다. 
+                    // 따라서 참조(reference)가 변경되지 않으면 React는 상태가 변경되었다고 인식하지 않을 수 있습니다. 
+                    // 즉, 글제목 배열의 내용이 바뀌어도 배열 자체의 참조는 동일하므로 React는 상태가 변경된 것을 감지하지 못할 수 있습니다.
                   }
                   }>
                   삭제
