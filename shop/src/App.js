@@ -1,9 +1,15 @@
 import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 import { Button , Container , Nav , Navbar , Row, Col} from 'react-bootstrap';
 //import bg from './img/bg.png'; 귀찮으니까 걍 css쓸게용ㅋㅋ
+import data from './data.js';
+
 
 function App() {
+
+  let [shoes, shoesSetting] = useState(data)
+
   return (
     <div className="App">
     <>
