@@ -9,6 +9,7 @@ import data from './data.js';
 function App() {
 
   let [shoes, shoesSetting] = useState(data)
+  console.log(shoes);
 
   return (
     <div className="App">
@@ -31,7 +32,7 @@ function App() {
           <Row>
             <Col sm>
               <img src={process.env.PUBLIC_URL + '/logo192.png'} width="80%"/>
-              <h4>상품명</h4>
+              <h4>{shoes[0].title}</h4>
               <p>상품설명</p>
             </Col>
             <Col sm>
