@@ -30,27 +30,25 @@ function App() {
       <div>
         <Container>
           <Row>
-            <Col sm>
-              <img src={process.env.PUBLIC_URL + '/logo192.png'} width="80%"/>
-              <h4>{shoes[0].title}</h4>
-              <p>상품설명</p>
-            </Col>
-            <Col sm>
-            <img src="https://codingapple1.github.io/shop/shoes2.jpg" width="80%"/>
-              <h4>상품명</h4>
-              <p>상품설명</p>
-            </Col>
-            <Col sm>
-            <img src="https://codingapple1.github.io/shop/shoes3.jpg" width="80%"/>
-              <h4>상품명</h4>
-              <p>상품설명</p>
-            </Col>
+            <ProductDetail/>
+            <ProductDetail/>
+            <ProductDetail/>
           </Row>
         </Container>
       </div>
     </>
     </div>
   );
+}
+
+function ProductDetail() {
+  return (
+    <Col sm>
+      <img src="https://codingapple1.github.io/shop/shoes2.jpg" width="80%"/>
+      <h4>상품명</h4>
+      <p>상품설명</p>
+    </Col>
+  )
 }
 
 export default App;
