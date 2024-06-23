@@ -30,9 +30,11 @@ function App() {
       <div>
         <Container>
           <Row>
-            <ProductDetail/>
-            <ProductDetail/>
-            <ProductDetail/>
+            { 
+              [1,2,3].map(function(i){
+                return ( <ProductDetail shoes={shoes} i={i}/>)
+              }) 
+            }
           </Row>
         </Container>
       </div>
@@ -41,12 +43,12 @@ function App() {
   );
 }
 
-function ProductDetail() {
+function ProductDetail(props) {
   return (
     <Col sm>
-      <img src="https://codingapple1.github.io/shop/shoes2.jpg" width="80%"/>
-      <h4>상품명</h4>
-      <p>상품설명</p>
+      <img src={`https://codingapple1.github.io/shop/shoes${props.i}.jpg`} width="80%"/>
+      <h4>{props.shoes[0].title}</h4>
+      <p>{props.shoes[1].price}</p>
     </Col>
   )
 }
