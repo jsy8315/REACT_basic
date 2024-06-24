@@ -47,9 +47,8 @@ function App() {
               </div>
           </>
         }/>
-        <Route path='/detail' element={
-          <DetailPage/>
-        }/>
+        <Route path='/detail' element={ <DetailPage/> }/>
+        <Route path='*' element={ <div>없는페이지요</div>}/>
       </Routes>
     </>
     </div>
