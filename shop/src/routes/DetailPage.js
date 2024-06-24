@@ -15,3 +15,5 @@ export default function DetailPage() {
   </div> 
     )
   }
+
+//   export default DetailPage; 위에 export 안쓰고 아래에 이렇게 써도 됨
