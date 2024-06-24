@@ -5,6 +5,7 @@ import { Button , Container , Nav , Navbar , Row, Col} from 'react-bootstrap';
 //import bg from './img/bg.png'; 귀찮으니까 걍 css쓸게용ㅋㅋ
 import data from './data.js';
 import { Routes, Route, Link } from 'react-router-dom'
+import DetailPage from './DetailPage.js';
 
 
 function App() {
@@ -45,7 +46,9 @@ function App() {
               </div>
           </>
         }/>
-        <Route path='/detail' element={<div>상세페이지임ㅎㅎ</div>}/>
+        <Route path='/detail' element={
+          <DetailPage/>
+        }/>
       </Routes>
     </>
     </div>
