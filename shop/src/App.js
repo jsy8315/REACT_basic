@@ -9,7 +9,6 @@ import data from './data.js';
 function App() {
 
   let [shoes, shoesSetting] = useState(data)
-  console.log(shoes);
 
   return (
     <div className="App">
@@ -47,8 +46,9 @@ function ProductDetail(props) {
   return (
     <Col sm>
       <img src={`https://codingapple1.github.io/shop/shoes${props.i}.jpg`} width="80%"/>
-      <h4>{props.shoes[0].title}</h4>
-      <p>{props.shoes[1].price}</p>
+      <h4>{props.i}</h4>
+      <h4>{props.shoes[props.i - 1].title}</h4>
+      <p>{props.shoes[props.i - 1].price}</p>
     </Col>
   )
 }
