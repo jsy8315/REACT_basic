@@ -4,6 +4,7 @@ import './App.css';
 import { Button , Container , Nav , Navbar , Row, Col} from 'react-bootstrap';
 //import bg from './img/bg.png'; 귀찮으니까 걍 css쓸게용ㅋㅋ
 import data from './data.js';
+import { Routes, Route, Link } from 'react-router-dom'
 
 
 function App() {
@@ -17,26 +18,35 @@ function App() {
         <Container>
           <Navbar.Brand href="#home">H9</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">홈</Nav.Link>
-            <Nav.Link href="#features">특징</Nav.Link>
+            <Nav.Link href="/">홈</Nav.Link>
+            <Nav.Link href="/detail">특징</Nav.Link>
             <Nav.Link href="#pricing">가격</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
 
-      <div className='main-bg'></div>
+      <Link to="/">홈</Link>
+      <Link to="/detail">상세페이지</Link>
 
-      <div>
-        <Container>
-          <Row>
-            { 
-              [1,2,3].map(function(i){
-                return ( <ProductDetail shoes={shoes} i={i}/>)
-              }) 
-            }
-          </Row>
-        </Container>
-      </div>
+      <Routes>
+        <Route path='/' element={
+          <>
+            <div className='main-bg'></div>
+              <div>
+                <Container>
+                  <Row>
+                    { 
+                      [1,2,3].map(function(i){
+                        return ( <ProductDetail shoes={shoes} i={i}/>)
+                      }) 
+                    }
+                  </Row>
+                </Container>
+              </div>
+          </>
+        }/>
+        <Route path='/detail' element={<div>상세페이지임ㅎㅎ</div>}/>
+      </Routes>
     </>
     </div>
   );
