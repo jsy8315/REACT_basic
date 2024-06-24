@@ -4,13 +4,14 @@ import './App.css';
 import { Button , Container , Nav , Navbar , Row, Col} from 'react-bootstrap';
 //import bg from './img/bg.png'; 귀찮으니까 걍 css쓸게용ㅋㅋ
 import data from './data.js';
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route, Link , useNavigate, Outlet } from 'react-router-dom'
 import DetailPage from './routes/DetailPage.js';
 
 
 function App() {
 
   let [shoes, shoesSetting] = useState(data)
+  let navigate = useNavigate();
 
   return (
     <div className="App">
@@ -19,9 +20,9 @@ function App() {
         <Container>
           <Navbar.Brand href="#home">H9</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="/">홈</Nav.Link>
-            <Nav.Link href="/detail">특징</Nav.Link>
-            <Nav.Link href="#pricing">가격</Nav.Link>
+            <Nav.Link onClick={()=>{ navigate('/') }}>홈</Nav.Link>
+            <Nav.Link onClick={()=>{ navigate('/detail') }}>자세히보기</Nav.Link>
+            <Nav.Link onClick={()=>{ navigate(-1) }}>뒤로가기</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
