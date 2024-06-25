@@ -47,7 +47,7 @@ function App() {
               </div>
           </>
         }/>
-        <Route path='/detail' element={ <DetailPage/> }/>
+        <Route path='/detail/:id' element={ <DetailPage shoes={shoes}/> }/>
         <Route path='*' element={ <div>없는페이지요</div>}/>
         <Route path='/about' element={ <About01/> }>
           <Route path='member' element={ <About02/> }/> {/*<Route path='/about/member' element={ <About/> }/>*/}
