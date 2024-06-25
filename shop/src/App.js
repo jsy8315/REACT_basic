@@ -49,6 +49,10 @@ function App() {
         }/>
         <Route path='/detail' element={ <DetailPage/> }/>
         <Route path='*' element={ <div>없는페이지요</div>}/>
+        <Route path='/about' element={ <About01/> }>
+          <Route path='member' element={ <About02/> }/> {/*<Route path='/about/member' element={ <About/> }/>*/}
+          <Route path='location' element={ <About02/> }/>{/*<Route path='/about/location' element={ <About/> }/>*/}
+        </Route>
       </Routes>
     </>
     </div>
@@ -63,6 +67,23 @@ function ProductDetail(props) {
       <h4>{props.shoes[props.i - 1].title}</h4>
       <p>{props.shoes[props.i - 1].price}</p>
     </Col>
+  )
+}
+
+function About01() {
+  return (
+    <div>
+      <h4>회사정보임01</h4>
+      <Outlet/>
+    </div>
+  )
+}
+
+function About02() {
+  return (
+    <div>
+      <h4>회사정보임02</h4>
+    </div>
   )
 }
 
