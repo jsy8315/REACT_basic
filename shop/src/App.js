@@ -53,6 +53,15 @@ function App() {
           <Route path='member' element={ <About02/> }/> {/*<Route path='/about/member' element={ <About/> }/>*/}
           <Route path='location' element={ <About02/> }/>{/*<Route path='/about/location' element={ <About/> }/>*/}
         </Route>
+        <Route path='/event' element={ 
+          <div>
+            <h2>오늘의 이벤트</h2>
+            <Outlet/>
+          </div> 
+        }>
+          <Route path='one' element={ <div><h4>첫 주문시 양배추즙 서비스</h4></div> }/>
+          <Route path='two' element={ <div><h4>생일기념 쿠폰받기</h4></div> }/>
+        </Route>
       </Routes>
     </>
     </div>
