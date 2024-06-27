@@ -69,9 +69,12 @@ function App() {
 }
 
 function ProductDetail(props) {
+  let navigate = useNavigate();
   return (
     <Col sm>
-      <img src={`https://codingapple1.github.io/shop/shoes${props.i}.jpg`} width="80%"/>
+      <Link to={`/detail/${props.i - 1}`} onClick={() => { navigate(`/detail/${props.i}`); }}>
+        <img src={`https://codingapple1.github.io/shop/shoes${props.i}.jpg`} width="80%"/>
+      </Link>
       <h4>{props.i}</h4>
       <h4>{props.shoes[props.i - 1].title}</h4>
       <p>{props.shoes[props.i - 1].price}</p>

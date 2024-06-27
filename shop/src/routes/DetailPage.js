@@ -1,4 +1,5 @@
-import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom"
 import styled from "styled-components";
 
 
@@ -9,29 +10,42 @@ let YellowBtn = styled.button`
 `
 
 // // 기존 스타일 복사도 가능함
-let NewBtn = styled.button(YellowBtn)
+let NewBtn = styled.button(YellowBtn);
 
 let testDiv = styled.div`
-background : ${ props =>  props.bgColor }; 
-color : ${ props =>  props.bgColor == 'yellow' ? 'white' : 'black'}; 
-padding : 10px;`
+  background-color : ${ props =>  props.bg }; 
+  padding : 10px;
+`
 
 
 export default function DetailPage(props) {
 
     let {idUsingParams} = useParams();
-    console.log(idUsingParams);
+    let navigate = useNavigate();
     
+    useEffect(()=>{
+      console.log('안녕')
+      for (var i = 0; i < 10000; i++){
+        console.log(1);
+      }
+    }
+    )
+
+    let [count, setCount] = useState(0)
+
     if (idUsingParams == props.shoes[idUsingParams].id) {
     return (
       <div className="container">
         <YellowBtn bg="blue">버튼</YellowBtn>
         <YellowBtn bg="red">버튼</YellowBtn>
         <NewBtn bg="yellow">뉴버튼</NewBtn>
-        <testDiv bgColor="grey">테스트Div</testDiv>
+        <testDiv bg="green">테스트Div</testDiv>
+        <button onClick={()=>{ setCount(count+1) }}>버튼</button>
         <div className="row">
           <div className="col-md-6">
-            <img src={`https://codingapple1.github.io/shop/shoes${props.shoes[idUsingParams].id + 1}.jpg`} width="100%" />
+          <Link to="/detail/0" onClick={() => { navigate('/detail/0'); }}>
+            <img src={`https://codingapple1.github.io/shop/shoes${props.shoes[idUsingParams].id + 1}.jpg`} width="100%" alt="Product Image"/>
+          </Link>
           </div>
           <div className="col-md-6">
             <h4 className="pt-5">{props.shoes[idUsingParams].title}</h4>
