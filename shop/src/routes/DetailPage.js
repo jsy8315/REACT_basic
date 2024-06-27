@@ -9,12 +9,12 @@ let YellowBtn = styled.button`
 `
 
 // // 기존 스타일 복사도 가능함
-// let NewBtn = styled.button(YellowBtn)``
+let NewBtn = styled.button(YellowBtn)
 
-// let testDiv = styled.div`
-// background : ${ props =>  props.bgColor }; 
-// color : ${ props =>  props.bgColor == 'yellow' ? 'white' : 'black'}; 
-// padding : 10px;`
+let testDiv = styled.div`
+background : ${ props =>  props.bgColor }; 
+color : ${ props =>  props.bgColor == 'yellow' ? 'white' : 'black'}; 
+padding : 10px;`
 
 
 export default function DetailPage(props) {
@@ -27,8 +27,8 @@ export default function DetailPage(props) {
       <div className="container">
         <YellowBtn bg="blue">버튼</YellowBtn>
         <YellowBtn bg="red">버튼</YellowBtn>
-        {/* <NewBtn bg="yellow">뉴버튼</NewBtn>
-        <testDiv bgColor="grey">테스트Div</testDiv> */}
+        <NewBtn bg="yellow">뉴버튼</NewBtn>
+        <testDiv bgColor="grey">테스트Div</testDiv>
         <div className="row">
           <div className="col-md-6">
             <img src={`https://codingapple1.github.io/shop/shoes${props.shoes[idUsingParams].id + 1}.jpg`} width="100%" />
