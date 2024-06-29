@@ -48,7 +48,7 @@ function App() {
           </>
         }/>
         <Route path='/detail/:idUsingParams' element={ <DetailPage shoes={shoes}/> }/>
-        <Route path='*' element={ <div>없는페이지요</div>}/>
+        <Route path='*' element={ <div>없는페이지</div>}/>
         <Route path='/about' element={ <About01/> }>
           <Route path='member' element={ <About02/> }/> {/*<Route path='/about/member' element={ <About/> }/>*/}
           <Route path='location' element={ <About02/> }/>{/*<Route path='/about/location' element={ <About/> }/>*/}

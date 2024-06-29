@@ -31,11 +31,16 @@ export default function DetailPage(props) {
     }
     )
 
+    // setTimeout(()=>{ 실행할코드  }, 2000)
+
     let [count, setCount] = useState(0)
 
     if (idUsingParams == props.shoes[idUsingParams].id) {
     return (
       <div className="container">
+        <div className="alert alert-warning">
+          2초이내 구매시 할인
+        </div>
         <YellowBtn bg="blue">버튼</YellowBtn>
         <YellowBtn bg="red">버튼</YellowBtn>
         <NewBtn bg="yellow">뉴버튼</NewBtn>
