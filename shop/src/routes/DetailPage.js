@@ -32,18 +32,18 @@ export default function DetailPage(props) {
     )
 
     setTimeout(()=>{
-      <div className="alert alert-warning">
-      </div>
+      setAlert2sec(false)
     }, 2000)
 
     let [count, setCount] = useState(0)
+    let [alert2sec, setAlert2sec] = useState(true)
 
     if (idUsingParams == props.shoes[idUsingParams].id) {
     return (
       <div className="container">
-        <div className="alert alert-warning">
-          2초이내 구매시 할인
-        </div>
+        {
+          alert2sec == true ? <Alert2sec/> : null
+        }
         <YellowBtn bg="blue">버튼</YellowBtn>
         <YellowBtn bg="red">버튼</YellowBtn>
         <NewBtn bg="yellow">뉴버튼</NewBtn>
@@ -73,5 +73,13 @@ export default function DetailPage(props) {
       )
     }
   }
+
+function Alert2sec() {
+  return(
+    <div className="alert alert-warning">
+      2초이내 구매시 할인
+    </div>
+  )
+}
 
 //   export default DetailPage; 위에 export 안쓰고 아래에 이렇게 써도 됨
