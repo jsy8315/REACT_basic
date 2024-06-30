@@ -24,30 +24,31 @@ export default function DetailPage(props) {
     let navigate = useNavigate();
     
     useEffect(()=>{
-      console.log('안녕')
-      for (var i = 0; i < 10000; i++){
-        console.log(1);
+      let a = setTimeout(()=>{ setAlert(false)  }, 2000)
+      console.log("나중에 되나??")
+      return ()=>{
+        console.log("진짜로 먼저 실헹되나???")
+        clearTimeout(a)
       }
     }
     )
 
-    setTimeout(()=>{
-      setAlert2sec(false)
-    }, 2000)
-
     let [count, setCount] = useState(0)
-    let [alert2sec, setAlert2sec] = useState(true)
+    let [alert, setAlert] = useState(true)
 
     if (idUsingParams == props.shoes[idUsingParams].id) {
     return (
       <div className="container">
         {
-          alert2sec == true ? <Alert2sec/> : null
+          alert == true ? 
+          <div className="alert alert-warning">
+            2초이내 구매시 할인
+          </div> : null
         }
         <YellowBtn bg="blue">버튼</YellowBtn>
         <YellowBtn bg="red">버튼</YellowBtn>
         <NewBtn bg="yellow">뉴버튼</NewBtn>
-        <testDiv bg="green">테스트Div</testDiv>
+        <testDiv bg="green">테스트Div</testDiv>2
         <button onClick={()=>{ setCount(count+1) }}>버튼</button>
         <div className="row">
           <div className="col-md-6">
@@ -73,13 +74,5 @@ export default function DetailPage(props) {
       )
     }
   }
-
-function Alert2sec() {
-  return(
-    <div className="alert alert-warning">
-      2초이내 구매시 할인
-    </div>
-  )
-}
 
 //   export default DetailPage; 위에 export 안쓰고 아래에 이렇게 써도 됨
