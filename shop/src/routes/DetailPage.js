@@ -31,7 +31,10 @@ export default function DetailPage(props) {
     }
     )
 
-    // setTimeout(()=>{ 실행할코드  }, 2000)
+    setTimeout(()=>{
+      <div className="alert alert-warning">
+      </div>
+    }, 2000)
 
     let [count, setCount] = useState(0)
 
