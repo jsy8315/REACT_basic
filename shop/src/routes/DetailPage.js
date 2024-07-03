@@ -18,6 +18,7 @@ let testDiv = styled.div`
 `
 let NumCheckBTN = styled.button`
   color : yellow
+  
 `
 
 
