@@ -18,7 +18,7 @@ let testDiv = styled.div`
 `
 let NumCheckBTN = styled.button`
   color : yellow
-  
+
 `
 
 
@@ -28,7 +28,7 @@ export default function DetailPage(props) {
     let navigate = useNavigate();
     
     useEffect(()=>{
-      let a = setTimeout(()=>{ setAlert(false)  }, 2000)
+      let a = setTimeout(()=>{ setAlert(false)  }, 1000)
       console.log("나중에 되나??")
       return ()=>{
         console.log("진짜로 먼저 실헹되나???")
