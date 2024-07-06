@@ -32,7 +32,7 @@ export default function DetailPage(props) {
       console.log("나중에 되나??")
       return ()=>{
         console.log("진짜로 먼저 실헹되나???")
-        console.log("진짜로 먼저 실헹되나22")
+        
         clearTimeout(a)
       }
     }
