@@ -31,7 +31,7 @@ export default function DetailPage(props) {
       let a = setTimeout(()=>{ setAlert(false)  }, 1000)
       console.log("나중에 되나??")
       return ()=>{
-        console.log("진짜로 먼저 실헹되나???")
+        console.log("진짜로 먼저 실헹되나")
         
         clearTimeout(a)
       }
