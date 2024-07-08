@@ -29,7 +29,7 @@ export default function DetailPage(props) {
     
     useEffect(()=>{
       let a = setTimeout(()=>{ setAlert(false)  }, 1000)
-      console.log("나중에 되나??")
+      console.log("나중에 되나")
       return ()=>{
         
         
