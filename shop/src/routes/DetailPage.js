@@ -27,13 +27,8 @@ export default function DetailPage(props) {
     let [alert01, setAlert01] = useState(true);
     
     useEffect(()=>{
-      let a = setTimeout(()=>{ setAlert01(false)  }, 1000)
-      console.log("나중에 되")
-      return ()=>{
-        clearTimeout(a)
-      }
-    }
-    )
+      setTimeout(()=>{ setAlert01(false)  }, 2000)
+    }, [])
 
     useEffect(()=>{
       if (isNaN(num) == true){
