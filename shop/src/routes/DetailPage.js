@@ -16,46 +16,37 @@ let testDiv = styled.div`
   background-color : ${ props =>  props.bg }; 
   padding : 10px;
 `
-let NumCheckBTN = styled.button`
-  color : yellow
-
-`
 
 
 export default function DetailPage(props) {
 
     let {idUsingParams} = useParams();
     let navigate = useNavigate();
+    let [num, setNum] = useState('');
+    let [count, setCount] = useState(0);
+    let [alert01, setAlert01] = useState(true);
     
     useEffect(()=>{
-      let a = setTimeout(()=>{ setAlert(false)  }, 1000)
+      let a = setTimeout(()=>{ setAlert01(false)  }, 1000)
       console.log("나중에 되")
       return ()=>{
-        
-        
         clearTimeout(a)
       }
     }
     )
-    
+
     useEffect(()=>{
-      console.log(inputTestClick);
-      typeof inputTestClick == Number ? 
-      <btn className="btn btn-warning">형님 숫자만 넣으시라고요 기분도 안 좋은데</btn> :
-      null
-    })
-
-    let [count, setCount] = useState(0);
-    let [alert, setAlert] = useState(true);
-    let [inputTest, setInputTest] = useState('');
-    let [inputTestClick, setInputTestClick] = useState('');
-    let [numCheckBtn, setNumCheckBtn] = useState(false)
-
+      if (isNaN(num) == true){
+        alert('그러지마라...')
+      }
+    }, [num])
+  
+    
     if (idUsingParams == props.shoes[idUsingParams].id) {
     return (
       <div className="container">
         {
-          alert == true ? 
+          alert01 == true ? 
           <div className="alert alert-warning">
             2초이내 구매시 할인
           </div> : null
@@ -75,20 +66,8 @@ export default function DetailPage(props) {
             <h4 className="pt-5">{props.shoes[idUsingParams].title}</h4>
             <p>{props.shoes[idUsingParams].content}</p>
             <p>{props.shoes[idUsingParams].price}</p>
-
-            <div>
-            <input onChange={(e)=>{setInputTest(e.target.value);
-              console.log(inputTest);
-            }} 
-            />
-            </div>
-            <NumCheckBTN>
-              
-            </NumCheckBTN>
-            <button className="btn btn-danger" onClick={()=>{
-              setInputTestClick(inputTest);
-            }}>주문하기</button> 
           </div>
+          <input onChange={ (e) => { setNum(e.target.value)}} />
         </div>
       </div> 
     )
@@ -100,6 +79,6 @@ export default function DetailPage(props) {
         </div>
       )
     }
+  
   }
-
 //   export default DetailPage; 위에 export 안쓰고 아래에 이렇게 써도 됨
