@@ -33,6 +33,7 @@ export default function DetailPage(props) {
     useEffect(()=>{
       if (isNaN(num) == true){
         alert('그러지마라')
+        alert('그러지마라')
       }
     }, [num])
   
