@@ -34,6 +34,7 @@ export default function DetailPage(props) {
       if (isNaN(num) == true){
         alert('그러지마라01')
         alert('그러지마라02')
+        alert('그러지마라02')
       }
     }, [num])
   
