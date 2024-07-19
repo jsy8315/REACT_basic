@@ -35,6 +35,7 @@ export default function DetailPage(props) {
         alert('그러지마라01')
         alert('그러지마라02')
         alert('그러지마라02')
+        alert('그러지마라02')
       }
     }, [num])
   
