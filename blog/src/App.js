@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 function App() {
 
-  // 서버에서 가져왔다고 가정
+  // 서버에서 가져왔다고 가정01
   let post = "광명 우동 맛집";
   let [글제목, 글제목변경] = useState(['남자 코트 추천', "가산 우동 맛집", "다이도터 독학"]);
   let [logo, setLogo] = useState('ReactBlog');
