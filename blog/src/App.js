@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="App">
       <div className='black-nav'>
-        <h4 id={post} style={{color : 'yellow', fontSize : '40px'}}>{logo}</h4>
+        <h4 id={post} style={{color : 'deepskyblue', fontSize : '40px'}}>{logo}</h4>
         {/* <h4>블로그임</h4> -> 실제 서비스였으면 서버 같은데서 블로그 글 가져와서 보여줄듯 */}
       </div>
       {/* <div className='list'>
@@ -111,7 +111,7 @@ function App() {
 
 
       {
-        modalShow == true ? <Modal color={'yellow'} 작명={글제목} 글제목변경프롭스={글제목변경} 
+        modalShow == true ? <Modal color={'deepskyblue'} 작명={글제목} 글제목변경프롭스={글제목변경} 
         현재글제목={clickedTitle}
         /> : null
       }

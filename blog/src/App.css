@@ -8,7 +8,7 @@ div {
 .list {
   padding-left: 20px;
   text-align: left;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid grey; 
 }
 
 .modal {
