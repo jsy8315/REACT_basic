@@ -84,7 +84,7 @@ function ProductDetail(props) {
 function About01() {
   return (
     <div>
-      <h4>회사정보임001</h4>
+      <h4>회사정보임01</h4>
       <Outlet/>
     </div>
   )
