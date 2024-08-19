@@ -93,7 +93,7 @@ function About01() {
 function About02() {
   return (
     <div>
-      <h4>회사정보임02</h4>
+      <h4>회사정보임03</h4>
     </div>
   )
 }
