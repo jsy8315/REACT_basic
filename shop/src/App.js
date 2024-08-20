@@ -67,19 +67,8 @@ function App() {
                 axios.get('https://codingapple1.github.io/shop/data2.json')
                 .then((결과)=>{
                   console.log('ajax test success!');
-                  console.log(결과.data);
-                  console.log(결과.data[0]);
-                  console.log(결과.data[1]);
-                  console.log(결과.data[2]);
-
                   moreShoesSetting(true);
-                  console.log('moreShoes상태');
-                  console.log(moreShoes);
-
                   moreShoesListSetting(결과.data);
-                  console.log('moreShoesList목록');
-                  console.log(moreShoesList.data);
-                  
                 })
                 .catch(()=>{
                   console.log('ajax test fail')
@@ -127,7 +116,7 @@ function ProductDetail02(props) {
     return (
       <Col sm>
         <Link to={`/detail/${props.i - 1}`} onClick={() => { navigate(`/detail/${props.i}`); }}>
-          <img src={`https://codingapple1.github.io/shop/shoes${props.i} + 3.jpg`} width="80%"/>
+          <img src={`https://codingapple1.github.io/shop/shoes${props.i + 4}.jpg`} width="80%"/>
         </Link>
         <h4>{props.i + 4}</h4>
         <h4>{props.moreShoesList[props.i].title}</h4>
