@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { Button , Container , Nav , Navbar , Row, Col} from 'react-bootstrap';
 import data from './data.js';
@@ -12,6 +12,8 @@ function App() {
 
   let [shoes, shoesSetting] = useState(data)
   let navigate = useNavigate();
+  let [moreShoes, moreShoesSetting] = useState(false);
+  let [moreShoesList, moreShoesListSetting] = useState();
 
   return (
     <div className="App">
@@ -45,10 +47,39 @@ function App() {
                   </Row>
                 </Container>
               </div>
+              <div>
+                <Container>
+                  <Row>
+                    { 
+                      [0, 1, 2].map(function(i){
+                        if (moreShoes == true) {
+                          return ( <ProductDetail02 moreShoesList = {moreShoesList} i={i}/>)
+                        }
+                        else {
+                          console.log('신발더보기02 실패')
+                        }
+                      }) 
+                    }
+                  </Row>
+                </Container>
+              </div>
               <button onClick={()=>{
                 axios.get('https://codingapple1.github.io/shop/data2.json')
                 .then((결과)=>{
+                  console.log('ajax test success!');
                   console.log(결과.data);
+                  console.log(결과.data[0]);
+                  console.log(결과.data[1]);
+                  console.log(결과.data[2]);
+
+                  moreShoesSetting(true);
+                  console.log('moreShoes상태');
+                  console.log(moreShoes);
+
+                  moreShoesListSetting(결과.data);
+                  console.log('moreShoesList목록');
+                  console.log(moreShoesList.data);
+                  
                 })
                 .catch(()=>{
                   console.log('ajax test fail')
@@ -89,6 +120,20 @@ function ProductDetail(props) {
       <p>{props.shoes[props.i - 1].price}</p>
     </Col>
   )
+}
+
+function ProductDetail02(props) {
+  let navigate = useNavigate();
+    return (
+      <Col sm>
+        <Link to={`/detail/${props.i - 1}`} onClick={() => { navigate(`/detail/${props.i}`); }}>
+          <img src={`https://codingapple1.github.io/shop/shoes${props.i} + 3.jpg`} width="80%"/>
+        </Link>
+        <h4>{props.i + 4}</h4>
+        <h4>{props.moreShoesList[props.i].title}</h4>
+        <p>{props.moreShoesList[props.i].price}</p>
+      </Col>
+    )
 }
 
 function About01() {
