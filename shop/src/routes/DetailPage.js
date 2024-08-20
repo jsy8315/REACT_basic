@@ -8,12 +8,15 @@ let YellowBtn = styled.button`
   color : ${ props =>  props.bg == 'blue' ? 'white' : 'black'}; 
   padding : 10px;
 `
+// props => props.bg는 외부 라이브러리 사용법이라 걍 복붙 ㄱㄱ
 
 // // 기존 스타일 복사도 가능함
 let NewBtn = styled.button(YellowBtn);
 
-let testDiv = styled.div`
-  background-color : ${ props =>  props.bg }; 
+// props로 컴포넌트 재활용가능
+let testDiv = styled.button`
+  background-color : ${ props =>  props.divBg };  
+  color : ${ props => props.bg };
   padding : 10px;
 `
 
@@ -33,7 +36,6 @@ export default function DetailPage(props) {
     useEffect(()=>{
       if (isNaN(num) == true){
         alert('그러지마라01')
-        alert('그러지마라01')
       }
     }, [num])
   
@@ -50,7 +52,7 @@ export default function DetailPage(props) {
         <YellowBtn bg="blue">버튼</YellowBtn>
         <YellowBtn bg="red">버튼</YellowBtn>
         <NewBtn bg="yellow">뉴버튼</NewBtn>
-        <testDiv bg="green">테스트Div</testDiv>2
+        <YellowBtn bg="green">테스트Div</YellowBtn>
         <button onClick={()=>{ setCount(count+1) }}>버튼</button>
         <div className="row">
           <div className="col-md-6">

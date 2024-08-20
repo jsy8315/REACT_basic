@@ -50,7 +50,7 @@ function App() {
         <Route path='*' element={ <div>없는페이지</div>}/>
         <Route path='/about' element={ <About01/> }>
           <Route path='member' element={ <About02/> }/> {/*<Route path='/about/member' element={ <About/> }/>*/}
-          <Route path='location' element={ <About02/> }/>{/*<Route path='/about/location' element={ <About/> }/>*/}
+          <Route path='location' element={ <About03/> }/>{/*<Route path='/about/location' element={ <About/> }/>*/}
         </Route>
         <Route path='/event' element={ 
           <div>
@@ -93,7 +93,16 @@ function About01() {
 function About02() {
   return (
     <div>
-      <h4>회사정보임03</h4>
+      <h4>회사정보임03-member url로 들어옴</h4>
+      <h4>NestedRoutes를 써서 outlet자리에 표시되는 부분</h4>
+    </div>
+  )
+}
+
+function About03() {
+  return (
+    <div>
+      <h4>회사정보임03-location url로 들어옴</h4>
       <h4>NestedRoutes를 써서 outlet자리에 표시되는 부분</h4>
     </div>
   )
