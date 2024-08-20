@@ -10,10 +10,8 @@ import axios from 'axios';
 
 function App() {
 
-  let [shoes, shoesSetting] = useState(data)
+  let [shoes, setShoes] = useState(data)
   let navigate = useNavigate();
-  let [moreShoes, moreShoesSetting] = useState(false);
-  let [moreShoesList, moreShoesListSetting] = useState();
 
   return (
     <div className="App">
@@ -40,24 +38,8 @@ function App() {
                 <Container>
                   <Row>
                     { 
-                      [1,2,3].map(function(i){
-                        return ( <ProductDetail shoes={shoes} i={i}/>)
-                      }) 
-                    }
-                  </Row>
-                </Container>
-              </div>
-              <div>
-                <Container>
-                  <Row>
-                    { 
-                      [0, 1, 2].map(function(i){
-                        if (moreShoes == true) {
-                          return ( <ProductDetail02 moreShoesList = {moreShoesList} i={i}/>)
-                        }
-                        else {
-                          console.log('신발더보기02 실패')
-                        }
+                      shoes.map(function(a, i){
+                        return ( <ProductDetail shoes={shoes[i]} i={i} key={i}/>)
                       }) 
                     }
                   </Row>
@@ -67,8 +49,8 @@ function App() {
                 axios.get('https://codingapple1.github.io/shop/data2.json')
                 .then((결과)=>{
                   console.log('ajax test success!');
-                  moreShoesSetting(true);
-                  moreShoesListSetting(결과.data);
+                  let copy = [...shoes, ...결과.data];
+                  setShoes(copy);
                 })
                 .catch(()=>{
                   console.log('ajax test fail')
@@ -101,29 +83,16 @@ function ProductDetail(props) {
   let navigate = useNavigate();
   return (
     <Col sm>
-      <Link to={`/detail/${props.i - 1}`} onClick={() => { navigate(`/detail/${props.i}`); }}>
-        <img src={`https://codingapple1.github.io/shop/shoes${props.i}.jpg`} width="80%"/>
+      <Link to={`/detail/${props.i}`} onClick={() => { navigate(`/detail/${props.i}`); }}>
+        <img src={`https://codingapple1.github.io/shop/shoes${props.i + 1}.jpg`} width="80%"/>
       </Link>
       <h4>{props.i}</h4>
-      <h4>{props.shoes[props.i - 1].title}</h4>
-      <p>{props.shoes[props.i - 1].price}</p>
+      <h4>{props.shoes.title}</h4>
+      <p>{props.shoes.price}</p>
     </Col>
   )
 }
 
-function ProductDetail02(props) {
-  let navigate = useNavigate();
-    return (
-      <Col sm>
-        <Link to={`/detail/${props.i - 1}`} onClick={() => { navigate(`/detail/${props.i}`); }}>
-          <img src={`https://codingapple1.github.io/shop/shoes${props.i + 4}.jpg`} width="80%"/>
-        </Link>
-        <h4>{props.i + 4}</h4>
-        <h4>{props.moreShoesList[props.i].title}</h4>
-        <p>{props.moreShoesList[props.i].price}</p>
-      </Col>
-    )
-}
 
 function About01() {
   return (
