@@ -94,6 +94,7 @@ function About02() {
   return (
     <div>
       <h4>회사정보임03</h4>
+      <h4>NestedRoutes를 써서 outlet자리에 표시되는 부분</h4>
     </div>
   )
 }
