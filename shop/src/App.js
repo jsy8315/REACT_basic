@@ -5,6 +5,7 @@ import { Button , Container , Nav , Navbar , Row, Col} from 'react-bootstrap';
 import data from './data.js';
 import { Routes, Route, Link , useNavigate, Outlet } from 'react-router-dom'
 import DetailPage from './routes/DetailPage.js';
+import axios from 'axios';
 
 
 function App() {
@@ -44,6 +45,15 @@ function App() {
                   </Row>
                 </Container>
               </div>
+              <button onClick={()=>{
+                axios.get('https://codingapple1.github.io/shop/data2.json')
+                .then((결과)=>{
+                  console.log(결과.data);
+                })
+                .catch(()=>{
+                  console.log('ajax test fail')
+                })
+              }}>상품더보기</button>
           </>
         }/>
         <Route path='/detail/:idUsingParams' element={ <DetailPage shoes={shoes}/> }/>

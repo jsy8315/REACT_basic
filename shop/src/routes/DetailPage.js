@@ -30,8 +30,15 @@ export default function DetailPage(props) {
     let [alert01, setAlert01] = useState(true);
     
     useEffect(()=>{
-      setTimeout(()=>{ setAlert01(false)  }, 2000)
-    }, [])
+      let a = setTimeout(()=>{ setAlert01(false)  }, 2000)
+      console.log("useEffect Test")
+
+      return ()=>{
+        // 기존타이머가 100개 쌓였을 수도 있으니 기존타이머는 제거해주세요! clean uo function 실행하자
+        console.log("clean up function test")
+        clearTimeout(a) //타이머제거해주는 함수
+      }
+    }, [count])
 
     useEffect(()=>{
       if (isNaN(num) == true){
