@@ -2,8 +2,19 @@ import { configureStore, createSlice } from '@reduxjs/toolkit'
 
 let user = createSlice({
     name : 'user',
-    initialState : 'kim'
+    initialState : 'kim',
+    reducers : {
+        changeName(state){
+            return 'john ' + state
+        },
+        changeName02(state){
+
+        }
+    }
+
 })
+
+export let { changeName, changeName02 } = user.actions;
 
 let stock = createSlice({
     name : 'stock',
