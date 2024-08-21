@@ -30,6 +30,8 @@ export default function DetailPage(props) {
     let [num, setNum] = useState('');
     let [count, setCount] = useState(0);
     let [alert01, setAlert01] = useState(true);
+    let [탭, 탭변경] = useState(0);
+
     
     useEffect(()=>{
       let a = setTimeout(()=>{ setAlert01(false)  }, 2000)
@@ -80,18 +82,16 @@ export default function DetailPage(props) {
 
         <Nav variant="tabs"  defaultActiveKey="link0">
           <Nav.Item>
-            <Nav.Link eventKey="link0">버튼0</Nav.Link>
+            <Nav.Link eventKey="link0" onClick={() => {탭변경(0)}}>버튼0</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="link1">버튼1</Nav.Link>
+            <Nav.Link eventKey="link1" onClick={() => {탭변경(1)}}>버튼1</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="link2">버튼2</Nav.Link>
+            <Nav.Link eventKey="link2"onClick={() => {탭변경(2)}}>버튼2</Nav.Link>
           </Nav.Item>
         </Nav>
-        <div>내용0</div>
-        <div>내용1</div>
-        <div>내용2</div>
+        <TabContent 탭={탭}/>
       </div> 
       
       
@@ -105,6 +105,13 @@ export default function DetailPage(props) {
         </div>
       )
     }
-  
+    
+    // 컴포넌트로 리액트에서 탭UI 만들기
+    function TabContent({탭}) {
+      return <div className="start end">
+        {[<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][탭]}
+      </div>
+    }
   }
 //   export default DetailPage; 위에 export 안쓰고 아래에 이렇게 써도 됨
+

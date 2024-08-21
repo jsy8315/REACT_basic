@@ -1,3 +1,14 @@
+/* 02.14. 멋지게 컴포넌트 전환 애니메이션 주는 법 (transition) */
+.start {
+  opacity: 0;
+}
+
+.end {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+/* ------------------------------------------------------- */
 .main-bg {
   height : 300px;
   background-image: url('./img/bg.png');
