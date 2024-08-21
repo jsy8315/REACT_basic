@@ -31,6 +31,18 @@ export default function DetailPage(props) {
     let [count, setCount] = useState(0);
     let [alert01, setAlert01] = useState(true);
     let [탭, 탭변경] = useState(0);
+    let [fadeDetailPage, setFadeDetailPage] = useState('');
+
+    // Detail 컴포넌트 로드시 투명도가 0에서 1로 서서히 증가하는 애니메이션
+    useEffect(()=>{
+      let a = setTimeout(()=>{setFadeDetailPage('end')}, 100);
+      return ()=>{
+        clearTimeout(a);
+        setFadeDetailPage('');
+      }
+    },[]
+
+    )
 
     
     useEffect(()=>{
@@ -53,7 +65,7 @@ export default function DetailPage(props) {
     
     if (idUsingParams == props.shoes[idUsingParams].id) {
     return (
-      <div className="container">
+      <div className="detailContainer">
         {
           alert01 == true ? 
           <div className="alert alert-warning">
@@ -108,7 +120,18 @@ export default function DetailPage(props) {
     
     // 컴포넌트로 리액트에서 탭UI 만들기
     function TabContent({탭}) {
-      return <div className="start end">
+
+      let [fade, setFade] = useState('')
+
+      useEffect(()=>{
+        let a = setTimeout(()=>{ setFade('end') }, 100)
+        return ()=>{
+          clearTimeout(a);
+          setFade('');
+        }
+      }, [탭])
+
+      return <div className={`start ${fade}`}>
         {[<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][탭]}
       </div>
     }
