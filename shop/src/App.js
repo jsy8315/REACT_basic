@@ -6,6 +6,7 @@ import data from './data.js';
 import { Routes, Route, Link , useNavigate, Outlet } from 'react-router-dom'
 import DetailPage from './routes/DetailPage.js';
 import axios from 'axios';
+import Cart from './routes/Cart.js';
 
 export let Context1 = createContext(); //context를 만들어줌 context는 state보관함
 
@@ -80,6 +81,9 @@ function App() {
         }>
           <Route path='one' element={ <div><h4>첫 주문시 양배추즙 서비스</h4></div> }/>
           <Route path='two' element={ <div><h4>생일기념 쿠폰받기</h4></div> }/>
+        </Route>
+        <Route path='/cart' element={ <Cart/> }>
+
         </Route>
       </Routes>
     </>
