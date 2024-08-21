@@ -65,7 +65,7 @@ export default function DetailPage(props) {
     
     if (idUsingParams == props.shoes[idUsingParams].id) {
     return (
-      <div className="detailContainer">
+      <div className={`detailContainer ${fadeDetailPage}`}>
         {
           alert01 == true ? 
           <div className="alert alert-warning">

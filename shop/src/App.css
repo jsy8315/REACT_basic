@@ -3,6 +3,11 @@
   opacity: 0;
 }
 
+
+.detailContainer {
+  opacity: 0;
+}
+
 .end {
   opacity: 1;
   transition: all 0.5s;
