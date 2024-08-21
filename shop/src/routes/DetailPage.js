@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom"
 import styled from "styled-components";
 import { Nav} from 'react-bootstrap';
 import '/Users/suyoung/Desktop/REACT_basic/shop/src/App.css';
+
+import {Context1} from '../App.js'
 
 
 let YellowBtn = styled.button`
@@ -25,6 +27,8 @@ let testDiv = styled.button`
 
 export default function DetailPage(props) {
 
+  let {재고, shoes} = useContext(Context1);
+
     let {idUsingParams} = useParams();
     let navigate = useNavigate();
     let [num, setNum] = useState('');
@@ -36,15 +40,16 @@ export default function DetailPage(props) {
     // Detail 컴포넌트 로드시 투명도가 0에서 1로 서서히 증가하는 애니메이션
     useEffect(()=>{
       let a = setTimeout(()=>{setFadeDetailPage('end')}, 100);
+      console.log("useEffect본체")
       return ()=>{
         clearTimeout(a);
+        console.log("useEffect return01")
         setFadeDetailPage('');
+        console.log("useEffect본체 return02")
       }
-    },[]
-
+    }, []
     )
 
-    
     useEffect(()=>{
       let a = setTimeout(()=>{ setAlert01(false)  }, 2000)
       console.log("useEffect Test")
@@ -76,6 +81,7 @@ export default function DetailPage(props) {
         <YellowBtn bg="red">버튼</YellowBtn>
         <NewBtn bg="yellow">뉴버튼</NewBtn>
         <YellowBtn bg="green">테스트Div</YellowBtn>
+        {재고}
         <button onClick={()=>{ setCount(count+1) }}>버튼</button>
         <div className="row">
           <div className="col-md-6">
@@ -132,7 +138,7 @@ export default function DetailPage(props) {
       }, [탭])
 
       return <div className={`start ${fade}`}>
-        {[<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][탭]}
+        {[<div>내용0{재고}</div>, <div>내용1</div>, <div>내용2</div>][탭]}
       </div>
     }
   }

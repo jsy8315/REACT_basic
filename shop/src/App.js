@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import { useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import './App.css';
 import { Button , Container , Nav , Navbar , Row, Col} from 'react-bootstrap';
 import data from './data.js';
@@ -7,11 +7,15 @@ import { Routes, Route, Link , useNavigate, Outlet } from 'react-router-dom'
 import DetailPage from './routes/DetailPage.js';
 import axios from 'axios';
 
+export let Context1 = createContext(); //context를 만들어줌 context는 state보관함
 
 function App() {
 
   let [shoes, setShoes] = useState(data)
   let navigate = useNavigate();
+
+  // context API 테스트 (자식은 props 없이 state 사용 가능)
+  let [재고] = useState([10, 11, 12]); //Detail, TabContent 컴포넌트에서 쓰고 싶음
 
   return (
     <div className="App">
@@ -58,7 +62,11 @@ function App() {
               }}>상품더보기</button>
           </>
         }/>
-        <Route path='/detail/:idUsingParams' element={ <DetailPage shoes={shoes}/> }/>
+        <Route path='/detail/:idUsingParams' element={ 
+          <Context1.Provider value={{ 재고, shoes }}>  {/* 여기 안의 모든 컴포넌트는 재고, shoes 사용 가능 */}
+            <DetailPage shoes={shoes}/> 
+          </Context1.Provider>
+          }/>
         <Route path='*' element={ <div>없는페이지</div>}/>
         <Route path='/about' element={ <About01/> }>
           <Route path='member' element={ <About02/> }/> {/*<Route path='/about/member' element={ <About/> }/>*/}
