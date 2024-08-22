@@ -7,11 +7,10 @@ import { changeName, increase, increase02 , increase03 } from '../store/userSlic
 export default function Cart(){
 
     let a = useSelector((state)=>{ return state });
-    let dispatch = useDispatch() //store.js로 요청보내주는 함수
+    let dispatch = useDispatch(); //store.js로 요청보내주는 함수
 
     return(
         <div>
-
             <h2>{a.user.name}({a.user.age}세)의 장바구니</h2>
             <button onClick={()=>{
                 dispatch(increase());

@@ -10,8 +10,8 @@ let stock = createSlice({
 let cartSample = createSlice({
     name : 'cartSample',
     initialState : [
-        {id : 0, name : 'White and Black', count : 2},
-        {id : 2, name : 'Grey Yordan', count : 1}
+        {id : 10, name : 'White and Black', count : 2},
+        {id : 12, name : 'Grey Yordan', count : 1}
       ], 
     reducers : {
         upCount(state, action){
@@ -21,10 +21,13 @@ let cartSample = createSlice({
                 }
             }
             )
+        },
+        detailCart(state, action){
+            return [...state, action.payload];
         }
     }
 })
-export let { upCount } = cartSample.actions;
+export let { upCount, detailCart } = cartSample.actions;
 
 export default configureStore({
   reducer: {

@@ -60,7 +60,11 @@
   }
 }
 
-#detail_order {
+#detailOrder {
+  margin-bottom: 30px;
+}
+
+#detailCart {
   margin-bottom: 30px;
 }
 

@@ -28,6 +28,7 @@ function App() {
             <Nav.Link onClick={()=>{ navigate('/') }}>홈</Nav.Link>
             <Nav.Link onClick={()=>{ navigate('/detail') }}>자세히보기</Nav.Link>
             <Nav.Link onClick={()=>{ navigate(-1) }}>뒤로가기</Nav.Link>
+            <Nav.Link onClick={()=>{ navigate('/cart') }}>장바구니</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

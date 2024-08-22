@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from "react";
+import { useDispatch } from 'react-redux'
 import { Link, useParams, useNavigate } from "react-router-dom"
 import styled from "styled-components";
 import { Nav} from 'react-bootstrap';
 import '/Users/suyoung/Desktop/REACT_basic/shop/src/App.css';
-
+import { configureStore, createSlice } from '@reduxjs/toolkit'
 import {Context1} from '../App.js'
+import { detailCart } from '../store.js';
 
 
 let YellowBtn = styled.button`
@@ -28,6 +30,7 @@ let testDiv = styled.button`
 export default function DetailPage(props) {
 
   let {재고, shoes} = useContext(Context1);
+  let dispatch = useDispatch();
 
     let {idUsingParams} = useParams();
     let navigate = useNavigate();
@@ -40,12 +43,9 @@ export default function DetailPage(props) {
     // Detail 컴포넌트 로드시 투명도가 0에서 1로 서서히 증가하는 애니메이션
     useEffect(()=>{
       let a = setTimeout(()=>{setFadeDetailPage('end')}, 100);
-      console.log("useEffect본체")
       return ()=>{
         clearTimeout(a);
-        console.log("useEffect return01")
         setFadeDetailPage('');
-        console.log("useEffect본체 return02")
       }
     }, []
     )
@@ -95,7 +95,14 @@ export default function DetailPage(props) {
             <p>{props.shoes[idUsingParams].price}</p>
           </div>
           <input onChange={ (e) => { setNum(e.target.value)}} />
-          <button className="btn btn-danger" id="detail_order">주문하기</button>
+          <button className="btn btn-danger" id="detailOrder">주문하기</button>
+          <button className="btn btn-primary" id="detailCart" onClick={()=>{
+            dispatch(detailCart({id : props.shoes[idUsingParams].id, name : props.shoes[idUsingParams].title, count : 1}
+            ))
+            console.log({id : props.shoes[idUsingParams].id, name : props.shoes[idUsingParams].title, count : 1})
+          }
+            
+          } >장바구니</button>
         </div>
 
         <Nav variant="tabs"  defaultActiveKey="link0">
