@@ -8,15 +8,20 @@ let cartSample = createSlice({
       ], 
     reducers : {
         upCount(state, action){
-            state.map((a02, i)=>{
-                if(action.payload == state[i].id){
-                    state[i].count += 1;
-                }
-            }
-            )
+            let 번호 = state.findIndex((a)=>{
+                return action.payload === a.id
+            })
+            state[번호].count++;
+            // state.map((a02, i)=>{
+            //     if(action.payload == state[i].id){
+            //         state[i].count += 1;
+            //     }
+            // }
+            // )
         },
         detailCart(state, action){
-            return [...state, action.payload];
+            // return [...state, action.payload];
+            state.push(action.payload);
         }
     }
 })
