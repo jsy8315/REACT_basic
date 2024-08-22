@@ -15,6 +15,11 @@ function App() {
   let [shoes, setShoes] = useState(data)
   let navigate = useNavigate();
 
+  // localStorage로 최근 본 상품 보여주기
+  useEffect(()=>{
+    localStorage.setItem('watched', JSON.stringify( [] ));
+  }, [])
+
   // context API 테스트 (자식은 props 없이 state 사용 가능)
   let [재고] = useState([10, 11, 12]); //Detail, TabContent 컴포넌트에서 쓰고 싶음
 

@@ -31,83 +31,88 @@ export default function DetailPage(props) {
 
   let {재고, shoes} = useContext(Context1);
   let dispatch = useDispatch();
+  let {idUsingParams} = useParams();
+  let navigate = useNavigate();
+  let [num, setNum] = useState('');
+  let [count, setCount] = useState(0);
+  let [alert01, setAlert01] = useState(true);
+  let [탭, 탭변경] = useState(0);
+  let [fadeDetailPage, setFadeDetailPage] = useState('');
 
-    let {idUsingParams} = useParams();
-    let navigate = useNavigate();
-    let [num, setNum] = useState('');
-    let [count, setCount] = useState(0);
-    let [alert01, setAlert01] = useState(true);
-    let [탭, 탭변경] = useState(0);
-    let [fadeDetailPage, setFadeDetailPage] = useState('');
+  // localStorage로 최근 본 상품 보여주기
+  useEffect(()=>{
+    let watchedList = JSON.parse(localStorage.getItem('watched'));
+    watchedList.push(props.shoes[idUsingParams].id);
+    let watchedListSet = new Set(watchedList);
+    let watchedListSetArray = Array.from(watchedListSet);
+    localStorage.setItem('watched', JSON.stringify(watchedListSetArray));
+  }, [])
 
-    // Detail 컴포넌트 로드시 투명도가 0에서 1로 서서히 증가하는 애니메이션
-    useEffect(()=>{
-      let a = setTimeout(()=>{setFadeDetailPage('end')}, 100);
-      return ()=>{
-        clearTimeout(a);
-        setFadeDetailPage('');
-      }
-    }, []
-    )
+  // Detail 컴포넌트 로드시 투명도가 0에서 1로 서서히 증가하는 애니메이션
+  useEffect(()=>{
+    let a = setTimeout(()=>{setFadeDetailPage('end')}, 100);
+    return ()=>{
+      clearTimeout(a);
+      setFadeDetailPage('');
+    }
+  }, []
+  )
 
-    useEffect(()=>{
-      let a = setTimeout(()=>{ setAlert01(false)  }, 2000)
-      console.log("useEffect Test")
+  useEffect(()=>{
+    let a = setTimeout(()=>{ setAlert01(false)  }, 2000)
+    console.log("useEffect Test")
+    return ()=>{
+      // 기존타이머가 100개 쌓였을 수도 있으니 기존타이머는 제거해주세요! clean uo function 실행하자
+      console.log("clean up function test")
+      clearTimeout(a) //타이머제거해주는 함수
+    }
+  }, [count])
+  useEffect(()=>{
+    if (isNaN(num) == true){
+      alert('그러지마라01')
+    }
+  }, [num])
 
-      return ()=>{
-        // 기존타이머가 100개 쌓였을 수도 있으니 기존타이머는 제거해주세요! clean uo function 실행하자
-        console.log("clean up function test")
-        clearTimeout(a) //타이머제거해주는 함수
-      }
-    }, [count])
-
-    useEffect(()=>{
-      if (isNaN(num) == true){
-        alert('그러지마라01')
-      }
-    }, [num])
   
-    
-    if (idUsingParams == props.shoes[idUsingParams].id) {
-    return (
-      <div className={`detailContainer ${fadeDetailPage}`}>
-        {
-          alert01 == true ? 
-          <div className="alert alert-warning">
-            2초이내 구매시 할인
-          </div> : null
-        }
-        <YellowBtn bg="blue">버튼</YellowBtn>
-        <YellowBtn bg="red">버튼</YellowBtn>
-        <NewBtn bg="yellow">뉴버튼</NewBtn>
-        <YellowBtn bg="green">테스트Div</YellowBtn>
-        {재고}
-        <button onClick={()=>{ setCount(count+1) }}>버튼</button>
-        <div className="row">
-          <div className="col-md-6">
-          <Link to="/detail/0" onClick={() => { navigate('/detail/0'); }}>
-            <img src={`https://codingapple1.github.io/shop/shoes${props.shoes[idUsingParams].id + 1}.jpg`} width="100%" alt="Product Image"/>
-          </Link>
-          </div>
-          <div className="col-md-6">
-            <h4 className="pt-5">{props.shoes[idUsingParams].title}</h4>
-            <p>{props.shoes[idUsingParams].content}</p>
-            <p>{props.shoes[idUsingParams].price}</p>
-          </div>
-          <input onChange={ (e) => { setNum(e.target.value)}} />
-          <button className="btn btn-danger" id="detailOrder">주문하기</button>
-          <button className="btn btn-primary" id="detailCart" onClick={()=>{
-            dispatch(detailCart({id : props.shoes[idUsingParams].id, name : props.shoes[idUsingParams].title, count : 1}
-            ))
-            console.log({id : props.shoes[idUsingParams].id, name : props.shoes[idUsingParams].title, count : 1})
-          }
-            
-          } >장바구니</button>
+  if (idUsingParams == props.shoes[idUsingParams].id) {
+  return (
+    <div className={`detailContainer ${fadeDetailPage}`}>
+      {
+        alert01 == true ? 
+        <div className="alert alert-warning">
+          2초이내 구매시 할인
+        </div> : null
+      }
+      <YellowBtn bg="blue">버튼</YellowBtn>
+      <YellowBtn bg="red">버튼</YellowBtn>
+      <NewBtn bg="yellow">뉴버튼</NewBtn>
+      <YellowBtn bg="green">테스트Div</YellowBtn>
+      {재고}
+      <button onClick={()=>{ setCount(count+1) }}>버튼</button>
+      <div className="row">
+        <div className="col-md-6">
+        <Link to="/detail/0" onClick={() => { navigate('/detail/0'); }}>
+          <img src={`https://codingapple1.github.io/shop/shoes${props.shoes[idUsingParams].id + 1}.jpg`} width="100%" alt="Product Image"/>
+        </Link>
         </div>
-
-        <Nav variant="tabs"  defaultActiveKey="link0">
-          <Nav.Item>
-            <Nav.Link eventKey="link0" onClick={() => {탭변경(0)}}>버튼0</Nav.Link>
+        <div className="col-md-6">
+          <h4 className="pt-5">{props.shoes[idUsingParams].title}</h4>
+          <p>{props.shoes[idUsingParams].content}</p>
+          <p>{props.shoes[idUsingParams].price}</p>
+        </div>
+        <input onChange={ (e) => { setNum(e.target.value)}} />
+        <button className="btn btn-danger" id="detailOrder">주문하기</button>
+        <button className="btn btn-primary" id="detailCart" onClick={()=>{
+          dispatch(detailCart({id : props.shoes[idUsingParams].id, name : props.shoes[idUsingParams].title, count : 1}
+          ))
+          console.log({id : props.shoes[idUsingParams].id, name : props.shoes[idUsingParams].title, count : 1})
+        }
+          
+        } >장바구니</button>
+      </div>
+      <Nav variant="tabs"  defaultActiveKey="link0">
+        <Nav.Item>
+          <Nav.Link eventKey="link0" onClick={() => {탭변경(0)}}>버튼0</Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link eventKey="link1" onClick={() => {탭변경(1)}}>버튼1</Nav.Link>
