@@ -1,8 +1,7 @@
 import {Table} from 'react-bootstrap' 
 import { useDispatch, useSelector } from 'react-redux'
-import { changeName } from '../store.js';
 import { upCount } from '../store.js';
-import { upAge } from '../store.js';
+import { changeName, increase, increase02 , increase03 } from '../store/userSlice.js';
 
 
 export default function Cart(){
@@ -11,19 +10,20 @@ export default function Cart(){
     console.log(a.cartSample[0].id);
     let dispatch = useDispatch() //store.js로 요청보내주는 함수
 
-    // 이런 형식의 데이터였음
-    // [
-    //     {id : 0, name : 'White and Black', count : 2},
-    //     {id : 2, name : 'Grey Yordan', count : 1}
-    //   ] 
 
     return(
         <div>
 
-            {a.user.name}({a.user.age}세)의 장바구니
+            <h2>{a.user.name}({a.user.age}세)의 장바구니</h2>
             <button onClick={()=>{
-                dispatch(upAge());
+                dispatch(increase());
             }}>1떡국</button>
+            <button onClick={()=>{
+                dispatch(increase02());
+            }}>10떡국</button>
+            <button onClick={()=>{
+                dispatch(increase03(100));
+            }}>100떡국</button>
             <Table>
                 <thead>
                   <tr>
@@ -42,9 +42,7 @@ export default function Cart(){
                             <td>{a.cartSample[i].count}</td>
                             <td>
                                 <button onClick={()=>{
-                                    dispatch(changeName());
-                                    // dispatch(upCount());
-                                    console.log(a.user)
+                                    dispatch(upCount(a.cartSample[i].id));
                                 }}>+</button>
                             </td>
                         </tr>

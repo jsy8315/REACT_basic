@@ -1,20 +1,6 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
-
-let user = createSlice({
-    name : 'user',
-    initialState : { name : 'kim', age : 20 },
-    reducers : {
-        changeName(state){
-            // return { name : 'Jung', age : 20 };
-            state.name = 'Park'; //Immer.js 도움
-        },
-        upAge(state){
-            state.age += 1;
-        }
-    }
-})
-
-export let { changeName, upAge } = user.actions;
+import { act } from 'react';
+import user from './store/userSlice.js';
 
 let stock = createSlice({
     name : 'stock',
@@ -28,8 +14,8 @@ let cartSample = createSlice({
         {id : 2, name : 'Grey Yordan', count : 1}
       ], 
     reducers : {
-        upCount(state){
-            return state + 1
+        upCount(state, a){
+            
         }
     }
 })
