@@ -6,7 +6,7 @@ import { Nav} from 'react-bootstrap';
 import '/Users/suyoung/Desktop/REACT_basic/shop/src/App.css';
 import { configureStore, createSlice } from '@reduxjs/toolkit'
 import {Context1} from '../App.js'
-import { detailCart } from '../store.js';
+import { detailCart } from '../store/cartSampleSlice.js';
 
 
 let YellowBtn = styled.button`
