@@ -7,9 +7,7 @@ import { changeName, increase, increase02 , increase03 } from '../store/userSlic
 export default function Cart(){
 
     let a = useSelector((state)=>{ return state });
-    console.log(a.cartSample[0].id);
     let dispatch = useDispatch() //store.js로 요청보내주는 함수
-
 
     return(
         <div>

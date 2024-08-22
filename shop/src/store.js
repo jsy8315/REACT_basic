@@ -14,8 +14,13 @@ let cartSample = createSlice({
         {id : 2, name : 'Grey Yordan', count : 1}
       ], 
     reducers : {
-        upCount(state, a){
-            
+        upCount(state, action){
+            state.map((a02, i)=>{
+                if(action.payload == state[i].id){
+                    state[i].count += 1;
+                }
+            }
+            )
         }
     }
 })
