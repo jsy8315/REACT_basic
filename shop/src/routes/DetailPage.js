@@ -38,14 +38,24 @@ export default function DetailPage(props) {
   let [alert01, setAlert01] = useState(true);
   let [탭, 탭변경] = useState(0);
   let [fadeDetailPage, setFadeDetailPage] = useState('');
+  let 찾은상품01 = JSON.stringify(props.shoes.find(x => x.id == idUsingParams));
+  // let 찾은상품02 = props.shoes.find(x => x.id == idUsingParams).id;
+
 
   // localStorage로 최근 본 상품 보여주기
   useEffect(()=>{
+    console.log("shoes : " + JSON.stringify(props.shoes));
+    console.log("detail 상품의 id : " + idUsingParams);
+    console.log("찾은상품01 : " + 찾은상품01);
+    // console.log("찾은상품02 : " + 찾은상품02);
     let watchedList = JSON.parse(localStorage.getItem('watched'));
     watchedList.push(props.shoes[idUsingParams].id);
     let watchedListSet = new Set(watchedList);
     let watchedListSetArray = Array.from(watchedListSet);
     localStorage.setItem('watched', JSON.stringify(watchedListSetArray));
+    //어레이 > 셋 > 어레이
+
+    
   }, [])
 
   // Detail 컴포넌트 로드시 투명도가 0에서 1로 서서히 증가하는 애니메이션

@@ -14,10 +14,13 @@ function App() {
 
   let [shoes, setShoes] = useState(data)
   let navigate = useNavigate();
-
-  // localStorage로 최근 본 상품 보여주기
+  
+  // localStorage로 최근 본 상품 보여주기 (watched란 빈 어레이 생성하고 시작)
   useEffect(()=>{
-    localStorage.setItem('watched', JSON.stringify( [] ));
+    let watched = localStorage.getItem('watched')
+    if(watched == null) {
+      localStorage.setItem('watched', JSON.stringify( [] ));
+    }
   }, [])
 
   // context API 테스트 (자식은 props 없이 state 사용 가능)
