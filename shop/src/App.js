@@ -7,6 +7,7 @@ import { Routes, Route, Link , useNavigate, Outlet } from 'react-router-dom'
 import DetailPage from './routes/DetailPage.js';
 import axios from 'axios';
 import Cart from './routes/Cart.js';
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query'  
 
 export let Context1 = createContext(); //context를 만들어줌 context는 state보관함
 
@@ -14,9 +15,15 @@ function App() {
 
   let [shoes, setShoes] = useState(data)
   let navigate = useNavigate();
-  
+
+  let result = useQuery(['작명'], ()=>{
+    axios.get('https://codingapple1.github.io/userdata.json')
+    .then((a)=>{ return a.data })
+  });
+
   // localStorage로 최근 본 상품 보여주기 (watched란 빈 어레이 생성하고 시작)
   useEffect(()=>{
+    console.log(result.data);
     let watched = localStorage.getItem('watched')
     if(watched == null) {
       localStorage.setItem('watched', JSON.stringify( [] ));
@@ -38,6 +45,7 @@ function App() {
             <Nav.Link onClick={()=>{ navigate(-1) }}>뒤로가기</Nav.Link>
             <Nav.Link onClick={()=>{ navigate('/cart') }}>장바구니</Nav.Link>
           </Nav>
+          <Nav className="ms-auto">😁방가방가 Jung^_^😁</Nav>
         </Container>
       </Navbar>
 
@@ -59,7 +67,7 @@ function App() {
                   </Row>
                 </Container>
               </div>
-              <button onClick={()=>{
+              <Button onClick={()=>{
                 axios.get('https://codingapple1.github.io/shop/data2.json')
                 .then((결과)=>{
                   console.log('ajax test success!');
@@ -69,7 +77,12 @@ function App() {
                 .catch(()=>{
                   console.log('ajax test fail')
                 })
-              }}>상품더보기</button>
+              }}>상품더보기</Button>
+              <div>
+                { result.data }
+                { result.isLoading && '로딩중' }
+                { result.error && '에러나면 true 뜸'}
+              </div>
           </>
         }/>
         <Route path='/detail/:idUsingParams' element={ 
