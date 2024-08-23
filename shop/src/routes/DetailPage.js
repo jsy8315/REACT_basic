@@ -8,7 +8,6 @@ import { configureStore, createSlice } from '@reduxjs/toolkit'
 import {Context1} from '../App.js'
 import { detailCart } from '../store/cartSampleSlice.js';
 
-
 let YellowBtn = styled.button`
   background : ${ props =>  props.bg }; 
   color : ${ props =>  props.bg == 'blue' ? 'white' : 'black'}; 
@@ -55,7 +54,7 @@ export default function DetailPage(props) {
     localStorage.setItem('watched', JSON.stringify(watchedListSetArray));
     //어레이 > 셋 > 어레이
 
-    
+
   }, [])
 
   // Detail 컴포넌트 로드시 투명도가 0에서 1로 서서히 증가하는 애니메이션

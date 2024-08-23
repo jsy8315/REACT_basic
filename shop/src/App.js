@@ -1,13 +1,20 @@
 import logo from './logo.svg';
-import { createContext, useEffect, useState } from 'react';
+import { lazy, Suspense, createContext, useEffect, useState } from 'react';
 import './App.css';
 import { Button , Container , Nav , Navbar , Row, Col} from 'react-bootstrap';
 import data from './data.js';
 import { Routes, Route, Link , useNavigate, Outlet } from 'react-router-dom'
-import DetailPage from './routes/DetailPage.js';
 import axios from 'axios';
-import Cart from './routes/Cart.js';
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query'  
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query';  
+
+// import DetailPage from './routes/DetailPage.js';
+// import Cart from './routes/Cart.js';
+// lazy import 해보기 - 바로 import가 필요없는 경우
+const DetailPage = lazy( ()=> import('./routes/DetailPage.js'));
+const Cart = lazy( ()=> import('./routes/Cart.js'));
+const UpgradeTest03 = lazy( ()=> import('./routes/UpgradeTest03.js'));
+
+
 
 export let Context1 = createContext(); //context를 만들어줌 context는 state보관함
 
@@ -16,14 +23,15 @@ function App() {
   let [shoes, setShoes] = useState(data)
   let navigate = useNavigate();
 
-  let result = useQuery(['작명'], ()=>{
+  let result = useQuery(['작명'], ()=>
     axios.get('https://codingapple1.github.io/userdata.json')
-    .then((a)=>{ return a.data })
-  });
+    .then((a)=>{ 
+      console.log('요청됨');
+      return a.data})
+  );
 
   // localStorage로 최근 본 상품 보여주기 (watched란 빈 어레이 생성하고 시작)
   useEffect(()=>{
-    console.log(result.data);
     let watched = localStorage.getItem('watched')
     if(watched == null) {
       localStorage.setItem('watched', JSON.stringify( [] ));
@@ -44,14 +52,23 @@ function App() {
             <Nav.Link onClick={()=>{ navigate('/detail') }}>자세히보기</Nav.Link>
             <Nav.Link onClick={()=>{ navigate(-1) }}>뒤로가기</Nav.Link>
             <Nav.Link onClick={()=>{ navigate('/cart') }}>장바구니</Nav.Link>
+            <Nav.Link onClick={()=>{ navigate('/upgradeTest03') }}>성능개선03</Nav.Link>
+
           </Nav>
-          <Nav className="ms-auto">😁방가방가 Jung^_^😁</Nav>
+          <Nav className="ms-auto">
+            {/* { result.isLoading ? '로딩중' : result.data.name } */}
+            { result.isLoading && '로딩중' }
+            { result.error && '에러남'}
+            { result.data && result.data.name }
+
+          </Nav>
         </Container>
       </Navbar>
 
       <Link to="/">홈</Link>
       <Link to="/detail">상세페이지</Link>
 
+      <Suspense fallback={<div>장바구니 로딩중이오...</div>}>
       <Routes>
         <Route path='/' element={
           <>
@@ -78,17 +95,14 @@ function App() {
                   console.log('ajax test fail')
                 })
               }}>상품더보기</Button>
-              <div>
-                { result.data }
-                { result.isLoading && '로딩중' }
-                { result.error && '에러나면 true 뜸'}
-              </div>
           </>
         }/>
-        <Route path='/detail/:idUsingParams' element={ 
-          <Context1.Provider value={{ 재고, shoes }}>  {/* 여기 안의 모든 컴포넌트는 재고, shoes 사용 가능 */}
-            <DetailPage shoes={shoes}/> 
-          </Context1.Provider>
+        <Route path='/detail/:idUsingParams' element={
+          <Suspense fallback={<div>상세페이지 로딩중이오...</div>}>
+            <Context1.Provider value={{ 재고, shoes }}>  {/* 여기 안의 모든 컴포넌트는 재고, shoes 사용 가능 */}
+              <DetailPage shoes={shoes}/> 
+            </Context1.Provider>
+          </Suspense>
           }/>
         <Route path='*' element={ <div>없는페이지</div>}/>
         <Route path='/about' element={ <About01/> }>
@@ -104,10 +118,10 @@ function App() {
           <Route path='one' element={ <div><h4>첫 주문시 양배추즙 서비스</h4></div> }/>
           <Route path='two' element={ <div><h4>생일기념 쿠폰받기</h4></div> }/>
         </Route>
-        <Route path='/cart' element={ <Cart/> }>
-
-        </Route>
-      </Routes>
+        <Route path='/cart' element={<Cart/>}></Route>
+        <Route path='/upgradeTest03' element={<UpgradeTest03/>}></Route>
+        </Routes>
+    </Suspense>
     </>
     </div>
   );
