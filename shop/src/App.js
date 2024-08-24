@@ -68,7 +68,7 @@ function App() {
       <Link to="/">홈</Link>
       <Link to="/detail">상세페이지</Link>
 
-      <Suspense fallback={<div>장바구니 로딩중이오...</div>}>
+      <Suspense fallback={<div>로딩중이오...</div>}>
       <Routes>
         <Route path='/' element={
           <>

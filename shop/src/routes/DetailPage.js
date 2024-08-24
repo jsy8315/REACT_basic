@@ -53,8 +53,6 @@ export default function DetailPage(props) {
     let watchedListSetArray = Array.from(watchedListSet);
     localStorage.setItem('watched', JSON.stringify(watchedListSetArray));
     //어레이 > 셋 > 어레이
-
-
   }, [])
 
   // Detail 컴포넌트 로드시 투명도가 0에서 1로 서서히 증가하는 애니메이션
