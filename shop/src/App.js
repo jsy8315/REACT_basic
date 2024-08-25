@@ -7,6 +7,8 @@ import { Routes, Route, Link , useNavigate, Outlet } from 'react-router-dom'
 import axios from 'axios';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';  
 import { useLike } from './hooks/like.js';
+import { useName } from './hooks/name.js';
+
 
 // import DetailPage from './routes/DetailPage.js';
 // import Cart from './routes/Cart.js';
@@ -132,6 +134,7 @@ function ProductDetail(props) {
 
   //custom hook으로 코드 재사용하기
   let [like, addLike] = useLike();
+  let [name, addName] = useName();
 
   let navigate = useNavigate();
   return (
@@ -145,6 +148,11 @@ function ProductDetail(props) {
       {like} <span onClick={()=>{
         addLike();
       }}>👍</span>
+      <div>
+      <span onClick={()=>{
+        addName();
+      }}>{name}👩🏻‍🦲</span>
+      </div>
     </Col>
   )
 }
